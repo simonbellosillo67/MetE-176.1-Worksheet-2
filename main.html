@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bellosillo (Worksheet 2)</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --font-display: 'Syne', sans-serif;
+      --font-body:    'EB Garamond', serif;
+      --font-mono:    'DM Mono', monospace;
+
+      --c-ink:        #1a1a1a;
+      --c-mid:        #444444;
+      --c-muted:      #888888;
+      --c-faint:      #cccccc;
+      --c-rule:       #d0d0d0;
+
+      --col-gap:      2.5rem;
+      --photo-w:      38%;
+      --text-w:       62%;
+      --section-gap:  3.5rem;
+      --sample-gap:   2.5rem;
+    }
+
+    html { font-size: 15px; }
+
+
+    body {
+      font-family: var(--font-body);
+      color: var(--c-ink);
+      line-height: 1.7;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 3rem 3rem 6rem;
+     background-image: url("micrographs/denim.webp");
+  background-repeat: repeat;
+  background-size: auto;
+
+    }
+
+    
+
+
+
+    /* ── Cover ── */
+    .cover {
+      padding: 4rem 0 3rem;
+      border-bottom: 2px solid var(--c-ink);
+      margin-bottom: 3.5rem;
+    }
+    .cover-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: whitesmoke;
+      margin-bottom: 1rem;
+    }
+.cover h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+
+  background: linear-gradient(
+    120deg,
+    whitesmoke 0%,
+    rgb(235, 209, 62) 25%,
+    whitesmoke 50%,
+    rgb(235, 209, 62) 75%,
+    whitesmoke 100%
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  animation: fluidFlow 4s ease-in-out infinite;
+}
+
+@keyframes fluidFlow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+    .cover-sub {
+      font-family: var(--font-body);
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--c-mid);
+      margin-top: 0.6rem;
+    }
+    .cover-meta {
+      margin-top: 2rem;
+      display: flex;
+      gap: 3rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: whitesmoke;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Section heading ── */
+    .section-heading {
+      margin-bottom: var(--section-gap);
+    }
+    .section-heading h2 {
+      font-family: var(--font-display);
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      border-bottom: 2px solid var(--c-ink);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+      color: white;
+    }
+    .section-heading p {
+      font-size: 0.97rem;
+      color: white;
+
+    }
+
+    /* ── TOC ── */
+    .toc {
+      margin-bottom: var(--section-gap);
+      border: 1px solid var(--c-rule);
+      padding: 1.5rem 2rem;
+    }
+    .toc-title {
+      font-family: var(--font-display);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: whitesmoke;
+      margin-bottom: 1rem;
+    }
+    .toc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.2rem 3rem;
+    }
+    .toc-item {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: var(--c-mid);
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px dotted var(--c-faint);
+      padding: 0.15rem 0;
+    }
+    .toc-item a { text-decoration: none; color: white; }
+    .toc-item a:hover { color: var(--c-ink); }
+
+    /* ── Sample card ── */
+    .sample {
+      margin-bottom: var(--sample-gap);
+      border: 1px solid var(--c-rule);
+    }
+
+.sample {
+  padding: 1.5rem 1.8rem;
+  box-shadow: 0 0 15px rgba(255, 200, 50, 0.3),
+              0 0 30px rgba(180, 130, 0, 0.15),
+              0 0 60px rgba(255, 165, 0, 0.08);
+  animation: textColGlow 3s ease-in-out infinite;
+}
+
+@keyframes textColGlow {
+  0%   { box-shadow: 0 0 15px rgba(255, 200, 50, 0.3),
+                     0 0 30px rgba(180, 130, 0, 0.15),
+                     0 0 60px rgba(255, 165, 0, 0.08); }
+  50%  { box-shadow: 0 0 25px rgba(255, 200, 50, 0.6),
+                     0 0 50px rgba(180, 130, 0, 0.35),
+                     0 0 90px rgba(255, 165, 0, 0.2); }
+  100% { box-shadow: 0 0 15px rgba(255, 200, 50, 0.3),
+                     0 0 30px rgba(180, 130, 0, 0.15),
+                     0 0 60px rgba(255, 165, 0, 0.08); }
+}
+
+
+    .sample-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 0.8rem 1.5rem;
+      border-bottom: 1px solid var(--c-rule);
+    }
+.sample-num {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+color: white;
+    text-shadow: -1px 1px 3px red;
+
+}
+
+
+    .sample-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: ghostwhite;
+    text-shadow: -1px 1px 2px gold;
+    }
+
+    /* ── 2-column body ── */
+    .sample-body {
+      display: grid;
+      grid-template-columns: var(--photo-w) var(--text-w);
+      gap: 0;
+    }
+
+    /* ── Left: photo column ── */
+    .photo-col {
+      border-right: 1px solid var(--c-rule);
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .micrograph {
+      border: 0px solid var(--c-rule);
+    }
+    .micrograph img {
+      display: block;
+       width: 200px;
+  height: 200px;
+  object-fit: contain;
+      margin: 0 auto;
+    }
+    .micrograph-caption {
+      padding: 0.5rem 0.6rem;
+      border-top: 0px solid var(--c-rule);
+    }
+ .micrograph-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  display: block;
+  margin-bottom: 0.2rem;
+
+  animation: colorFade 4s ease-in-out infinite;
+}
+
+@keyframes colorFade {
+  0%   { color: gold; }
+  25%  { color: white; }
+  50%  { color: gold; }
+  75%  { color: white; }
+  100% { color: gold; }
+}
+    .micrograph-ref {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      color: var(--c-muted);
+      display: none;
+      word-break: break-all;
+    }
+
+    /* ── Right: text column ── */
+    .text-col {
+      padding: 1.5rem 1.8rem;
+    }
+
+    .field {
+      margin-bottom: 1rem;
+      color: white;
+    }
+    .field:last-child { margin-bottom: 0; }
+
+    .field-label {
+      font-family: var(--font-mono);
+      font-size: 0.67rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: ghostwhite;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .field-value {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: white;
+      line-height: 1.65;
+    }
+
+    .field-divider {
+      border: none;
+      border-top: 1px solid var(--c-rule);
+      margin: 1rem 0;
+    }
+
+    /* Phases list */
+    .phases-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .phases-list li {
+      font-size: 0.93rem;
+      line-height: 1.6;
+      padding: 0.35rem 0;
+      border-bottom: 1px solid var(--c-rule);
+      display: flex;
+      gap: 0.5rem;
+    }
+    .phases-list li:last-child { border-bottom: none; }
+    .phase-name {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: white;
+      flex-shrink: 0;
+      padding-top: 0.1rem;
+      min-width: 14ch;
+    }
+
+    /* Reference box */
+    .ref-box {
+      margin-top: 1rem;
+      border: 1px solid var(--c-rule);
+      padding: 0.7rem 0.9rem;
+    }
+    .ref-box-title {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: white;
+      margin-bottom: 0.4rem;
+    }
+    .ref-box ol {
+      padding-left: 1.2rem;
+      margin: 0;
+    }
+    .ref-box li {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: white;
+      line-height: 1.6;
+      margin-bottom: 0.2rem;
+    }
+
+    /* ── Comparison section ── */
+    .comparison {
+      margin-top: var(--section-gap);
+      border: 1px solid var(--c-rule);
+      color: white;
+    }
+    .comparison-header {
+      padding: 0.8rem 1.5rem;
+      border-bottom: 1px solid var(--c-rule);
+    }
+    .comparison-header h2 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+    .comparison-body {
+      padding: 1.5rem 1.8rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 2.5rem;
+    }
+    .comp-block { margin-bottom: 1.4rem;}
+    .comp-label {
+      font-family: var(--font-mono);
+      font-size: 0.67rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: white;
+      font-weight: bold;
+      margin-bottom: 0.3rem;
+    }
+    .comp-text {
+      font-size: 0.93rem;
+      line-height: 1.65;
+      margin: 1.2rem 0;
+    }
+    .comp-full {
+      grid-column: 1 / -1;
+    }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 4rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--c-rule);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--c-muted);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* ── Print ── */
+    @media print {
+      body { padding: 1rem; font-size: 11px; }
+      .sample { page-break-inside: avoid; }
+    }
+
+.cover-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ── MOBILE RESPONSIVE PATCH ── */
+
+@media (max-width: 768px) {
+
+  html { font-size: 14px; }
+
+  body {
+    padding: 1.2rem 1rem 4rem;
+  }
+
+  .cover-row {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .cover {
+    padding: 2rem 0 1.5rem;
+  }
+
+  .cover-meta {
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 1rem;
+  }
+
+  .toc-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sample-body {
+    grid-template-columns: 1fr;
+  }
+
+  .photo-col {
+    border-right: none;
+    border-bottom: 1px solid var(--c-rule);
+    padding: 1rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .micrograph {
+    flex: 0 0 auto;
+    width: calc(50% - 0.5rem);
+  }
+
+  .micrograph img {
+    width: 100%;
+    height: 160px;
+  }
+
+  .text-col {
+    padding: 1rem;
+  }
+
+  .comparison-body {
+    grid-template-columns: 1fr;
+  }
+
+  .comp-full {
+    grid-column: 1;
+  }
+
+  .sample-header {
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding: 0.8rem 1rem;
+  }
+
+  .sample-title {
+    font-size: 1rem;
+  }
+
+  .phases-list li {
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .phase-name {
+    min-width: unset;
+  }
+
+  footer {
+    flex-direction: column;
+    gap: 0.4rem;
+    text-align: center;
+  }
+
+  .ref-box li {
+    font-size: 0.65rem;
+    word-break: break-word;
+  }
+}
+
+@media (max-width: 480px) {
+  .micrograph {
+    width: 100%;
+  }
+
+  .micrograph img {
+    height: 200px;
+  }
+
+  .cover h1 {
+    font-size: 2rem;
+  }
+}
+
+
+
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════ COVER ══════════════════ -->
+<header class="cover">
+<div class="cover-row">
+  <p class="cover-label">Worksheet # 2: Ferrous and Non-Ferrous Microstructures</p>
+  <p class="cover-label">Simon Andrei D. Bellosillo</p>
+  <p class="cover-label">Mete 176.1 WXY</p>
+</div>
+<br>
+  <h1>Microstructure<br>Compendium</h1>
+  <p class="cover-sub">Ferrous and Non-Ferrous Alloys Micrographs</p>
+  <div class="cover-meta">
+    <span>Illumination: Reflected Light Microscopy (all samples)</span>
+    <span>Magnification: Length bar shown on each micrograph</span>
+  </div>
+</header>
+
+<!-- ══════════════════ TOC ══════════════════ -->
+<nav class="toc">
+  <p class="toc-title">Contents</p>
+  <div class="toc-grid">
+    <div class="toc-item"><a href="#f1">F-S1 · Eutectoid Steel</a><span>Ferrous</span></div>
+    <div class="toc-item"><a href="#nf1">NF-S1 · 70/30 Brass (Annealed)</a><span>Non-Ferrous</span></div>
+    <div class="toc-item"><a href="#f2">F-S2 · Hypereutectoid Steel</a><span>Ferrous</span></div>
+    <div class="toc-item"><a href="#nf2">NF-S2 · 60/40 Brass (Widmanstätten)</a><span>Non-Ferrous</span></div>
+    <div class="toc-item"><a href="#f3">F-S3 · Plate Martensite</a><span>Ferrous</span></div>
+    <div class="toc-item"><a href="#nf3">NF-S3 · Al-Si Eutectic (As-Cast)</a><span>Non-Ferrous</span></div>
+    <div class="toc-item"><a href="#f4">F-S4 · Grey Cast Iron</a><span>Ferrous</span></div>
+    <div class="toc-item"><a href="#nf4">NF-S4 · Cu-Sn Bronze</a><span>Non-Ferrous</span></div>
+    <div class="toc-item"><a href="#f5">F-S5 · Ni-Hard Iron</a><span>Ferrous</span></div>
+    <div class="toc-item"><a href="#nf5">NF-S5 · Cu-45Zn Brass</a><span>Non-Ferrous</span></div>
+    <div class="toc-item"><a href="#f6">F-S6 · Eutectic White Cast Iron</a><span>Ferrous</span></div>
+    <div class="toc-item"><a href="#nf6">NF-S6 · Ti-6Al-4V</a><span>Non-Ferrous</span></div>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════════════
+     PART I - FERROUS ALLOYS
+══════════════════════════════════════════ -->
+<div class="section-heading">
+  <h2>Part I - Ferrous Alloys</h2>
+  <p>Iron-based alloys. Microstructures governed primarily by carbon content and thermal processing history. All samples etched and examined under reflected light microscopy.</p>
+</div>
+
+<!-- ── F-S1: Eutectoid Steel ── -->
+<article class="sample" id="f1">
+  <div class="sample-header">
+    <span class="sample-num">FERROUS · SAMPLE 01</span>
+    <span class="sample-title">Eutectoid Steel (Fe-0.8 wt% C)</span>
+  </div>
+  <div class="sample-body">
+
+    <div class="photo-col">
+      <figure class="micrograph">
+        <img src="micrographs/f_s11.png" alt="F-S1 Micrograph 1" />
+        <figcaption class="micrograph-caption">
+          <span class="micrograph-label">Fig. 1a - Coarse pearlite colonies, low magnification</span>
+          <span class="micrograph-ref">C:\Users\Simon\micrographs\f_s1.png</span>
+        </figcaption>
+      </figure>
+      <figure class="micrograph">
+        <img src="micrographs/f_s12.png" alt="F-S1 Micrograph 2" />
+        <figcaption class="micrograph-caption">
+          <span class="micrograph-label">Fig. 1b - Lamellar detail, individual colony</span>
+          <span class="micrograph-ref">C:\Users\Simon\micrographs\f_s1.png</span>
+        </figcaption>
+      </figure>
+      <figure class="micrograph">
+        <img src="micrographs/f_s13.png" alt="F-S1 Micrograph 3" />
+        <figcaption class="micrograph-caption">
+          <span class="micrograph-label">Fig. 1c - Colony boundaries and orientation contrast</span>
+          <span class="micrograph-ref">C:\Users\Simon\micrographs\f_s1.jpg</span>
+        </figcaption>
+      </figure>
+
+      <div class="ref-box">
+        <p class="ref-box-title">References</p>
+        <ol>
+     
+          <li>T. W. Clyne, Department of Materials Science and Metallurgy, University of Cambridge, DoITPoMS Teaching and Learning Package, 2001. [Online]. Available: https://www.doitpoms.ac.uk/miclib/full_record.php?id=14</li>
+          <li>Cal Poly Materials Engineering, MatE Etchant Recipe Book: Common Metallographic Etchants, California Polytechnic State University, San Luis Obispo.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="text-col">
+      <div class="field">
+        <span class="field-label">Alloy Name</span>
+        <span class="field-value">Fe-C Eutectoid Steel</span>
+      </div>
+      <div class="field">
+        <span class="field-label">Composition (wt%)</span>
+        <span class="field-value">Fe - 0.8% C</span>
+      </div>
+      <div class="field">
+        <span class="field-label">Processing / Treatment</span>
+        <span class="field-value">Slow cooled from the austenite region</span>
+      </div>
+      <div class="field">
+        <span class="field-label">Etching Details</span>
+        <span class="field-value">Nital (90% ethanol, 10% nitric acid); immersed ~5 seconds</span>
+      </div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Microstructure Description</span>
+        <span class="field-value">Long, alternating parallel strips resembling elongated bacteria, arranged in colonies oriented in different directions. The lamellae are closely spaced and parallel within each colony. Apparent spacing changes between colonies depending on the angle of the lamellae relative to the polished surface.</span>
+      </div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Phases Present</span>
+        <ul class="phases-list">
+          <li><span class="phase-name">Pearlite</span><span>The dominant and only microconstituent - a lamellar composite of ferrite and cementite.</span></li>
+          <li><span class="phase-name">Ferrite (a-Fe)</span><span>Light/white lamellae; soft and ductile.</span></li>
+          <li><span class="phase-name">Cementite (Fe₃C)</span><span>Dark lamellae; hard and brittle.</span></li>
+        </ul>
+      </div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Why It Looks Like That</span>
+        <span class="field-value">This steel has the eutectoid composition (0.8 wt% C). Slow cooling drives the eutectoid reaction γ → α + Fe₃C, producing pearlite. Cementite nucleates first at austenite grain boundaries, depleting adjacent regions of carbon and favouring ferrite nucleation alongside it - this alternating nucleation advances the pearlite nodule into the austenite. Because the sample was slowly cooled, the degree of undercooling is small, giving a low carbide nucleation rate and a large interlamellar spacing: a coarse pearlite microstructure. The interlamellar spacing is inversely proportional to undercooling. Each colony consists of two interpenetrating single crystals of ferrite and cementite with defined crystallographic orientation relationships.</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ── F-S2: Hypereutectoid Steel ── -->
+<article class="sample" id="f2">
+  <div class="sample-header">
+    <span class="sample-num">FERROUS · SAMPLE 02</span>
+    <span class="sample-title">Hypereutectoid Steel (Fe-1.0 wt% C)</span>
+  </div>
+  <div class="sample-body">
+    <div class="photo-col">
+      <figure class="micrograph">
+        <img src="micrographs/f_s21.png" alt="F-S2 Micrograph 1" />
+        <figcaption class="micrograph-caption">
+          <span class="micrograph-label">Fig. 2a - Low magnification, 400 µm scale bar</span>
+          <span class="micrograph-ref">C:\Users\Simon\micrographs\f_s2.jpg</span>
+        </figcaption>
+      </figure>
+      <figure class="micrograph">
+        <img src="micrographs/f_s22.png" alt="F-S2 Micrograph 2" />
+        <figcaption class="micrograph-caption">
+          <span class="micrograph-label">Fig. 2b - High magnification, 40 µm scale bar</span>
+          <span class="micrograph-ref">C:\Users\Simon\micrographs\f_s2.jpg</span>
+        </figcaption>
+      </figure>
+      <div class="ref-box">
+        <p class="ref-box-title">References</p>
+        <ol>
+          <li>T. W. Clyne, Department of Materials Science and Metallurgy, University of Cambridge, DoITPoMS Teaching and Learning Package, Oct. 25, 2001. [Online]. Available: https://www.doitpoms.ac.uk/miclib/full_record.php?id=21</li>
+          <li>C. Su, T. Li, Z. Lin, H. Yuan, G. Gu, H. Wang, H. Zhong, Q. Han, and Q. Zhai, “Propagation mechanism and criteria of hot tearing in Fe–1.0 wt.% C binary alloy,” Engineering Failure Analysis, vol. 180, 2025, Art. no. 109830. https://doi.org/10.1016/j.engfailanal.2025.109830</li>
+        </ol>
+      </div>
+    </div>
+    <div class="text-col">
+      <div class="field"><span class="field-label">Alloy Name</span><span class="field-value">Fe-C Hypereutectoid Steel</span></div>
+      <div class="field"><span class="field-label">Composition (wt%)</span><span class="field-value">Fe - 1.0% C</span></div>
+      <div class="field"><span class="field-label">Processing / Treatment</span><span class="field-value">Fast cooled from the austenite region</span></div>
+      <div class="field"><span class="field-label">Etching Details</span><span class="field-value">3% Nital</span></div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Microstructure Description</span>
+        <span class="field-value">At low magnification (400 µm), the structure appears grainy. At higher magnification (40 µm), a lamellar pearlitic structure becomes visible within grains, with a thin cementite network along prior austenite grain boundaries and Widmanstätten side plates in some regions.</span>
+      </div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Phases Present</span>
+        <ul class="phases-list">
+          <li><span class="phase-name">Pro-eut. Cementite</span><span>Forms first at prior austenite grain boundaries; may also appear as Widmanstätten plates under faster cooling.</span></li>
+          <li><span class="phase-name">Pearlite</span><span>Lamellar ferrite + cementite mixture within the prior austenite grains.</span></li>
+        </ul>
+      </div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Why It Looks Like That</span>
+        <span class="field-value">Carbon content (1.0 wt%) exceeds the eutectoid, then, the proeutectoid cementite (Fe₃C) nucleates at austenite grain boundaries, outlining the original grain structure. Only upon further cooling does the remaining austenite transform to pearlite. Faster cooling reduces carbon diffusion time, producing a finer microstructure. Under these conditions proeutectoid cementite grows as Widmanstätten side plates along specific crystallographic planes of the parent austenite, rather than forming continuous grain-boundary films.</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ── F-S3: Plate Martensite ── -->
+<article class="sample" id="f3">
+  <div class="sample-header">
+    <span class="sample-num">FERROUS · SAMPLE 03</span>
+    <span class="sample-title">Plate Martensite (Fe-Ni 30-C 0.3 wt%)</span>
+  </div>
+  <div class="sample-body">
+    <div class="photo-col">
+      <figure class="micrograph">
+        <img src="micrographs/f_s31.png" alt="F-S3 Micrograph 1" />
+        <figcaption class="micrograph-caption">
+          <span class="micrograph-label">Fig. 3a - Lenticular martensite plates overview, 200 µm scale bar</span>
+          <span class="micrograph-ref">C:\Users\Simon\micrographs\f_s3.jpg</span>
+        </figcaption>
+      </figure>
+      <figure class="micrograph">
+        <img src="micrographs/f_s32.png" alt="F-S3 Micrograph 2" />
+        <figcaption class="micrograph-caption">
+          <span class="micrograph-label">Fig. 3b - Plate detail, 80 µm scale bar</span>
+          <span class="micrograph-ref">C:\Users\Simon\micrographs\f_s3.jpg</span>
+        </figcaption>
+      </figure>
+      <div class="ref-box">
+        <p class="ref-box-title">References</p>
+        <ol>
+          <li>T. W. Clyne, Department of Materials Science and Metallurgy, University of Cambridge, DoITPoMS Teaching and Learning Package, Oct. 25, 2001. [Online]. Available: https://www.doitpoms.ac.uk/miclib/full_record.php?id=45</li>
+          <li>R. E. Smallman and A. H. W. Ngan, “Steel transformations,” in Modern Physical Metallurgy, 8th ed., Oxford: Butterworth-Heinemann, 2014, pp. 473–498. https://doi.org/10.1016/B978-0-08-098204-5.00012-2</li>
+        </ol>
+      </div>
+    </div>
+    <div class="text-col">
+      <div class="field"><span class="field-label">Alloy Name</span><span class="field-value">Fe-Ni-C Martensitic Alloy</span></div>
+      <div class="field"><span class="field-label">Composition (wt%)</span><span class="field-value">Fe - 30% Ni, 0.3% C</span></div>
+      <div class="field"><span class="field-label">Processing / Treatment</span><span class="field-value">Quenched to -80°C</span></div>
+      <div class="field"><span class="field-label">Etching Details</span><span class="field-value">3% Nital</span></div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Microstructure Description</span>
+        <span class="field-value">Lenticular (lens-shaped) plates scattered throughout the matrix, resembling broken glass shards or jagged needles criss-crossing in multiple directions. Each plate shows a characteristic pointed, tapered shape.</span>
+      </div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Phases Present</span>
+        <ul class="phases-list">
+          <li><span class="phase-name">Plate Martensite</span><span>Dominant metastable phase - lenticular, needle/plate-like features formed by a diffusionless shear transformation.</span></li>
+          <li><span class="phase-name">Retained Austenite</span><span>Possibly present between martensitic plates - transformation may be incomplete.</span></li>
+        </ul>
+      </div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Why It Looks Like That</span>
+        <span class="field-value">Quenching to -80°C prevents carbon diffusion, bypassing the pearlite reaction and producing a diffusionless shear transformation: FCC austenite converts to body-centred tetragonal (BCT) martensite - a supersaturated solid solution. The lenticular shape of each plate is a direct consequence of the elastic shear stresses imposed on the surrounding matrix, exactly analogous to mechanical twinning.</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ── F-S4: Grey Cast Iron ── -->
+<article class="sample" id="f4">
+  <div class="sample-header">
+    <span class="sample-num">FERROUS · SAMPLE 04</span>
+    <span class="sample-title">Grey Cast Iron (Hypereutectic)</span>
+  </div>
+  <div class="sample-body">
+    <div class="photo-col">
+      <figure class="micrograph">
+        <img src="micrographs/f_s41.png" alt="F-S4 Micrograph 1" />
+        <figcaption class="micrograph-caption">
+          <span class="micrograph-label">Fig. 4a - Graphite flake distribution, 400 µm scale bar</span>
+          <span class="micrograph-ref">C:\Users\Simon\micrographs\f_s4.jpg</span>
+        </figcaption>
+      </figure>
+      <figure class="micrograph">
+        <img src="micrographs/f_s42.png" alt="F-S4 Micrograph 2" />
+        <figcaption class="micrograph-caption">
+          <span class="micrograph-label">Fig. 4b - Pearlite matrix and flake detail, 40 µm scale bar</span>
+          <span class="micrograph-ref">C:\Users\Simon\micrographs\f_s4.jpg</span>
+        </figcaption>
+      </figure>
+      <div class="ref-box">
+        <p class="ref-box-title">References</p>
+        <ol>
+          <li>T. W. Clyne, Department of Materials Science and Metallurgy, University of Cambridge, DoITPoMS Teaching and Learning Package, Oct. 25, 2001. [Online]. Available: https://www.doitpoms.ac.uk/miclib/full_record.php?id=62</li>
+          <li>K. B. Rundman, “Cast irons,” in Encyclopedia of Materials: Science and Technology, Elsevier, 2001, pp. 1003–1010. https://doi.org/10.1016/B0-08-043152-6/00186-8</li>
+        </ol>
+      </div>
+    </div>
+    <div class="text-col">
+      <div class="field"><span class="field-label">Alloy Name</span><span class="field-value">Hypereutectic Grey Cast Iron</span></div>
+      <div class="field"><span class="field-label">Composition (wt%)</span><span class="field-value">Fe - 3.6% C, 2.1% Si</span></div>
+      <div class="field"><span class="field-label">Processing / Treatment</span><span class="field-value">Cast and slowly cooled</span></div>
+      <div class="field"><span class="field-label">Etching Details</span><span class="field-value">Nital etching</span></div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Microstructure Description</span>
+        <span class="field-value">Long, thick, irregular strand-like features resembling tangled coarse hairs scattered throughout the matrix. These are interconnected graphite flakes embedded in a complex surrounding matrix of transformed ledeburite.</span>
+      </div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Phases Present</span>
+        <ul class="phases-list">
+          <li><span class="phase-name">Graphite Flakes</span><span>Dark, elongated, interconnected free carbon - primary phase to solidify from the melt.</span></li>
+          <li><span class="phase-name">Pearlite</span><span>Lamellar ferrite + cementite forming below the eutectoid temperature.</span></li>
+          <li><span class="phase-name">Cementite (Fe₃C)</span><span>Hard carbide within the transformed ledeburite.</span></li>
+          <li><span class="phase-name">Trans. Ledeburite</span><span>Original austenite + cementite eutectic mixture, subsequently transformed on cooling.</span></li>
+        </ul>
+      </div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Why It Looks Like That</span>
+        <span class="field-value">C equivalent (4.37 wt%) exceeds the eutectic (4.3 wt%), making this a hypereutectic grey iron. Silicon strongly promotes graphite over cementite: free graphite solidifies first directly from the melt as flakes - not dendrites - aligning in the heat-flow direction. The remaining liquid forms ledeburite (austenite + cementite eutectic). The austenite transforms by the eutectoid reaction (γ → α + Fe₃C), producing the pearlite and cementite matrix. Graphite flakes compensate for solidification shrinkage but act as internal crack-like stress concentrators, making the iron brittle despite its good compressive strength.</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ── F-S5: Ni-Hard Iron ── -->
+<article class="sample" id="f5">
+  <div class="sample-header">
+    <span class="sample-num">FERROUS · SAMPLE 05</span>
+    <span class="sample-title">Ni-Hard Iron (White Cast Iron)</span>
+  </div>
+  <div class="sample-body">
+    <div class="photo-col">
+      <figure class="micrograph">
+        <img src="micrographs/f_s51.png" alt="F-S5 Micrograph 1" />
+        <figcaption class="micrograph-caption">
+          <span class="micrograph-label">Fig. 5a - Proeutectic austenite dendrites overview, 400 µm scale bar</span>
+          <span class="micrograph-ref">C:\Users\Simon\micrographs\f_s5.jpg</span>
+        </figcaption>
+      </figure>
+      <figure class="micrograph">
+        <img src="micrographs/f_s52.png" alt="F-S5 Micrograph 2" />
+        <figcaption class="micrograph-caption">
+          <span class="micrograph-label">Fig. 5b - Interdendritic eutectic microstructure, 80 µm scale bar</span>
+          <span class="micrograph-ref">C:\Users\Simon\micrographs\f_s5.jpg</span>
+        </figcaption>
+      </figure>
+      <div class="ref-box">
+        <p class="ref-box-title">References</p>
+        <ol>
+          <li>T. W. Clyne, Department of Materials Science and Metallurgy, University of Cambridge, DoITPoMS Teaching and Learning Package, Oct. 25, 2001. [Online]. Available: https://www.doitpoms.ac.uk/miclib/full_record.php?id=72</li>
+        </ol>
+      </div>
+    </div>
+    <div class="text-col">
+      <div class="field"><span class="field-label">Alloy Name</span><span class="field-value">Ni-Hard Iron (White Cast Iron)</span></div>
+      <div class="field"><span class="field-label">Composition (wt%)</span><span class="field-value">Fe - 2.8% C, 4.5% Ni, 1.2% Mn, 0.75% Cr, 0.5% Si, 0.3% P, 0.25% Mo, 0.1% S</span></div>
+      <div class="field"><span class="field-label">Processing / Treatment</span><span class="field-value">As-cast; stress relieved 200-300°C for ~4 hours</span></div>
+      <div class="field"><span class="field-label">Etching Details</span><span class="field-value">Nital etchant</span></div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Microstructure Description</span>
+        <span class="field-value">Tree-like (dendritic) regions surrounded by a network of vein-like interdendritic material. Fine needle-like features visible within the dendrites.</span>
+      </div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Phases Present</span>
+        <ul class="phases-list">
+          <li><span class="phase-name">Proeutectic Austenite</span><span>Tree-like dendritic regions solidified first from the melt, now partially or fully transformed to martensite.</span></li>
+        </ul>
+      </div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Why It Looks Like That</span>
+        <span class="field-value">Ni-hard is a white cast iron - all carbon remains as cementite. Proeutectic austenite solidifies as dendrites; interdendritic liquid forms a eutectic of austenite and carbides. Nickel suppresses the pearlite transformation by pushing the TTT nose to longer times, ensuring the austenite transforms to martensite needles (diffusionless shear, lenticular morphology) instead of pearlite. Chromium hardens and stabilises the eutectic carbides. Stress relief at 200-300°C for ~4 hours reduces martensitic transformation stresses and promotes retained austenite decomposition - analogous to the first stage of tempering.</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ── F-S6: Eutectic White Cast Iron ── -->
+<article class="sample" id="f6">
+  <div class="sample-header">
+    <span class="sample-num">FERROUS · SAMPLE 06</span>
+    <span class="sample-title">Eutectic White Cast Iron</span>
+  </div>
+  <div class="sample-body">
+    <div class="photo-col">
+      <figure class="micrograph">
+        <img src="micrographs/f_s61.png" alt="F-S6 Micrograph 1" />
+        <figcaption class="micrograph-caption">
+          <span class="micrograph-label">Fig. 6a - Chevron/herringbone ledeburite, 400 µm</span>
+          <span class="micrograph-ref">C:\Users\Simon\micrographs\f_s6.jpg</span>
+        </figcaption>
+      </figure>
+      <figure class="micrograph">
+        <img src="micrographs/f_s62.png" alt="F-S6 Micrograph 2" />
+        <figcaption class="micrograph-caption">
+          <span class="micrograph-label">Fig. 6b - Cementite particles in ferrite matrix, 100 µm</span>
+          <span class="micrograph-ref">C:\Users\Simon\micrographs\f_s6.jpg</span>
+        </figcaption>
+      </figure>
+      <div class="ref-box">
+        <p class="ref-box-title">References</p>
+        <ol>
+          <li>R. F. Cochrane, Department of Materials, University of Leeds, DoITPoMS Teaching and Learning Package, Sept. 4, 2002. [Online]. Available: https://www.doitpoms.ac.uk/miclib/full_record.php?id=374</li>
+        </ol>
+      </div>
+    </div>
+    <div class="text-col">
+      <div class="field"><span class="field-label">Alloy Name</span><span class="field-value">Eutectic White Cast Iron</span></div>
+      <div class="field"><span class="field-label">Composition (wt%)</span><span class="field-value">Fe - 4.17% C, 0.40% Si, 0.45% Mn, 0.95% Cr</span></div>
+      <div class="field"><span class="field-label">Processing / Treatment</span><span class="field-value">Cast and cooled</span></div>
+      <div class="field"><span class="field-label">Etching Details</span><span class="field-value">Nital etchant</span></div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Microstructure Description</span>
+        <span class="field-value">At low magnification (400 µm), angular chevron-like (herringbone) markings across the structure. At higher magnification (100 µm), many small rounded cementite particles distributed throughout a ferrite matrix.</span>
+      </div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Phases Present</span>
+        <ul class="phases-list">
+          <li><span class="phase-name">Ledeburite</span><span>Eutectic mixture of cementite and austenite formed upon solidification.</span></li>
+          <li><span class="phase-name">Cementite (Fe₃C)</span><span>Hard carbide particles remaining after eutectoid transformation of the austenite component.</span></li>
+        </ul>
+      </div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Why It Looks Like That</span>
+        <span class="field-value">Low Si (0.40 wt%) combined with Cr (0.95 wt%) - which stabilises cementite and prevents graphitisation - ensures all carbon remains as Fe₃C. Upon cooling from the melt, ledeburite (cementite + austenite) forms as the eutectic solidification product. The chevron/herringbone markings at low magnification reflect the crystallographic orientation relationships within the ledeburite eutectic - cementite plates growing in specific orientations. The austenite within the ledeburite undergoes the eutectoid reaction (γ → a + Fe₃C), breaking down into cementite particles in ferrite - the small rounded features at high magnification. The overall hard and brittle character arises from the large volume fraction of Fe₃C throughout.</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+<!-- ══════════════════════════════════════════
+     PART II - NON-FERROUS ALLOYS
+══════════════════════════════════════════ -->
+<div class="section-heading" style="margin-top: var(--section-gap);">
+  <h2>Part II - Non-Ferrous Alloys</h2>
+  <p>Non-iron-based alloys including copper, aluminium, and titanium systems. Microstructures governed by alloying element content, solidification conditions, and deformation/annealing history.</p>
+</div>
+
+<!-- ── NF-S1: 70/30 Brass ── -->
+<article class="sample" id="nf1">
+  <div class="sample-header">
+    <span class="sample-num">NON-FERROUS · SAMPLE 01</span>
+    <span class="sample-title">70/30 Brass - Annealed (Cu-Zn 30 wt%)</span>
+  </div>
+  <div class="sample-body">
+    <div class="photo-col">
+      <figure class="micrograph">
+        <img src="micrographs/nf_s11.png" alt="NF-S1 Micrograph 1" />
+        <figcaption class="micrograph-caption">
+          <span class="micrograph-label">Fig. NF-1a - Large equiaxed grains with annealing twins, 400 µm scale bar</span>
+          <span class="micrograph-ref">C:\Users\Simon\micrographs\nf_s1.jpg</span>
+        </figcaption>
+      </figure>
+      <figure class="micrograph">
+        <img src="micrographs/nf_s12.png" alt="NF-S1 Micrograph 2" />
+        <figcaption class="micrograph-caption">
+          <span class="micrograph-label">Fig. NF-1b - Twin boundary detail within single grain, 80 µm scale bar</span>
+          <span class="micrograph-ref">C:\Users\Simon\micrographs\nf_s1.jpg</span>
+        </figcaption>
+      </figure>
+      <div class="ref-box">
+        <p class="ref-box-title">References</p>
+        <ol>
+          <li>T. W. Clyne, Department of Materials Science and Metallurgy, University of Cambridge, DoITPoMS Teaching and Learning Package, Oct. 25, 2001. [Online]. Available: https://www.doitpoms.ac.uk/miclib/full_record.php?id=33</li>
+          <li>K. Gupta, N. K. Jain, and R. Laubscher, “Introduction to gear engineering,” in Advanced Gear Manufacturing and Finishing, Academic Press, 2017, pp. 1–33. https://doi.org/10.1016/B978-0-12-804460-5.00001-8</li>
+        </ol>
+      </div>
+    </div>
+    <div class="text-col">
+      <div class="field"><span class="field-label">Alloy Name</span><span class="field-value">70/30 Brass (Cartridge Brass)</span></div>
+      <div class="field"><span class="field-label">Composition (wt%)</span><span class="field-value">Cu - 70%, Zn - 30%</span></div>
+      <div class="field"><span class="field-label">Processing / Treatment</span><span class="field-value">Annealed → Cold rolled 50% → Re-annealed at 800°C for 30 minutes</span></div>
+      <div class="field"><span class="field-label">Etching Details</span><span class="field-value">50% distilled water, 50% nitric acid; immersed ~5 seconds</span></div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Microstructure Description</span>
+        <span class="field-value">Large equiaxed grains with prominent straight parallel bands running through individual grains - classic annealing twins. Grain boundaries are well defined. The structure is uniform and single-phase.</span>
+      </div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Phases Present</span>
+        <ul class="phases-list">
+          <li><span class="phase-name">Alpha (a) Phase</span><span>Single FCC Cu-rich solid solution - the only phase present throughout.</span></li>
+          <li><span class="phase-name">Annealing Twins</span><span>Straight parallel bands within grains - a crystallographic feature of the α phase, not a separate phase.</span></li>
+        </ul>
+      </div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Why It Looks Like That</span>
+        <span class="field-value">With 30% Zn, this brass is entirely single-phase (α). Cold rolling to 50% stored dislocations; the 800°C anneal provided energy for full recrystallization and rapid grain growth, producing large equiaxed grains. Annealing twins form in FCC metals with low stacking fault energy (like brass) during grain growth, as partial dislocations on specific planes create a twinned crystal orientation - appearing as straight parallel bands with well-defined boundaries.</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ── NF-S2: 60/40 Brass Widmanstätten ── -->
+<article class="sample" id="nf2">
+  <div class="sample-header">
+    <span class="sample-num">NON-FERROUS · SAMPLE 02</span>
+    <span class="sample-title">60/40 Brass - Widmanstätten (Cu-Zn 40 wt%)</span>
+  </div>
+  <div class="sample-body">
+    <div class="photo-col">
+      <figure class="micrograph">
+        <img src="micrographs/nf_s21.png" alt="NF-S2 Micrograph 1" />
+        <figcaption class="micrograph-caption">
+          <span class="micrograph-label">Fig. NF-2a - Basket weave alpha plates in beta matrix, overview, 400 µm scale bar</span>
+          <span class="micrograph-ref">C:\Users\Simon\micrographs\nf_s2.jpg</span>
+        </figcaption>
+      </figure>
+      <figure class="micrograph">
+        <img src="micrographs/nf_s22.png" alt="NF-S2 Micrograph 2" />
+        <figcaption class="micrograph-caption">
+          <span class="micrograph-label">Fig. NF-2b - Plate orientation detail, ~90° variants, 80 µm scale bar</span>
+          <span class="micrograph-ref">C:\Users\Simon\micrographs\nf_s2.jpg</span>
+        </figcaption>
+      </figure>
+      <div class="ref-box">
+        <p class="ref-box-title">References</p>
+        <ol>
+          <li>T. W. Clyne, Department of Materials Science and Metallurgy, University of Cambridge, DoITPoMS Teaching and Learning Package, Oct. 25, 2001. [Online]. Available: https://www.doitpoms.ac.uk/miclib/full_record.php?id=51</li>
+        </ol>
+      </div>
+    </div>
+    <div class="text-col">
+      <div class="field"><span class="field-label">Alloy Name</span><span class="field-value">60/40 Brass (Muntz Metal)</span></div>
+      <div class="field"><span class="field-label">Composition (wt%)</span><span class="field-value">Cu - 60%, Zn - 40%</span></div>
+      <div class="field"><span class="field-label">Processing / Treatment</span><span class="field-value">Air cooled</span></div>
+      <div class="field"><span class="field-label">Etching Details</span><span class="field-value">NH₄OH / H₂O₂ solution</span></div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Microstructure Description</span>
+        <span class="field-value">Distinctive 'basket weave' pattern with elongated plates oriented at approximately 90° to each other in alternating fashion, creating an interlocking geometric arrangement throughout the matrix.</span>
+      </div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Phases Present</span>
+        <ul class="phases-list">
+          <li><span class="phase-name">Alpha Phase</span><span>Light-coloured elongated plates (FCC, Cu-rich solid solution) precipitated during cooling.</span></li>
+          <li><span class="phase-name">Beta Phase</span><span>Dark matrix between the alpha plates (BCC, Zn-rich phase).</span></li>
+        </ul>
+      </div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Why It Looks Like That</span>
+        <span class="field-value">At 40% Zn, the alloy exists as single β at elevated temperature. Air cooling drives alpha phase to precipitate out of beta phase - but without enough time for the equilibrium globular morphology. Instead, α grows as elongated Widmanstätten plates along specific crystallographic planes to minimise strain energy. Different crystallographic variants oriented ~90° to each other produce the 'basket weave' appearance.</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ── NF-S3: Al-Si Eutectic ── -->
+<article class="sample" id="nf3">
+  <div class="sample-header">
+    <span class="sample-num">NON-FERROUS · SAMPLE 03</span>
+    <span class="sample-title">Al-Si Eutectic Alloy, As-Cast (Al-12 wt% Si)</span>
+  </div>
+  <div class="sample-body">
+    <div class="photo-col">
+      <figure class="micrograph">
+        <img src="micrographs/nf_s31.png" alt="NF-S3 Micrograph 1" />
+        <figcaption class="micrograph-caption">
+          <span class="micrograph-label">Fig. NF-3a - Coarse eutectic with primary Al dendrites</span>
+          <span class="micrograph-ref">C:\Users\Simon\micrographs\nf_s3.jpg</span>
+        </figcaption>
+      </figure>
+      <figure class="micrograph">
+        <img src="micrographs/nf_s32.png" alt="NF-S3 Micrograph 2" />
+        <figcaption class="micrograph-caption">
+          <span class="micrograph-label">Fig. NF-3b - Coarse Si plates within Al matrix, detail</span>
+          <span class="micrograph-ref">C:\Users\Simon\micrographs\nf_s3.jpg</span>
+        </figcaption>
+      </figure>
+      <div class="ref-box">
+        <p class="ref-box-title">References</p>
+        <ol>
+          <li>T. W. Clyne, Department of Materials Science and Metallurgy, University of Cambridge, DoITPoMS Teaching and Learning Package, Oct. 25, 2001. [Online]. Available: https://www.doitpoms.ac.uk/miclib/full_record.php?id=58</li>
+          <li>A. K. Gain and L. Zhang, “Tribological behavior of eutectic Al–12Si alloy manufactured by selective laser melting,” Wear, vol. 522, 2023, Art. no. 204679. https://doi.org/10.1016/j.wear.2023.204679</li>
+        </ol>
+      </div>
+    </div>
+    <div class="text-col">
+      <div class="field"><span class="field-label">Alloy Name</span><span class="field-value">Al-12Si Eutectic Alloy</span></div>
+      <div class="field"><span class="field-label">Composition (wt%)</span><span class="field-value">Al - 88%, Si - 12%</span></div>
+      <div class="field"><span class="field-label">Processing / Treatment</span><span class="field-value">As-cast in a metal mould (slow solidification)</span></div>
+      <div class="field"><span class="field-label">Etching Details</span><span class="field-value">Keller's etch</span></div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Microstructure Description</span>
+        <span class="field-value">Coarse overall structure. Primary aluminium dendrites visible despite the near-eutectic composition. Silicon appears as coarse plate-like or fibrous features in the eutectic regions.</span>
+      </div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Phases Present</span>
+        <ul class="phases-list">
+          <li><span class="phase-name">Al Dendrites</span><span>Light, branching Al-rich solid solution regions - primary phase despite near-eutectic composition.</span></li>
+          <li><span class="phase-name">Silicon Phase</span><span>Dark, coarse plate-like or fibrous features in the eutectic regions.</span></li>
+        </ul>
+      </div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Why It Looks Like That</span>
+        <span class="field-value">Slow solidification in a metal mould produces a coarse microstructure with large brittle Si plates. Primary Al dendrites appear despite the near-eutectic composition because the 'coupled zone' in Al-Si is asymmetric - the Si liquidus curves sharply back with increasing undercooling (due to faceted Si growth), so the alloy solidifies outside the coupled zone, forming primary Al dendrites before eutectic growth begins.</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ── NF-S4: Cu-Sn Bronze ── -->
+<article class="sample" id="nf4">
+  <div class="sample-header">
+    <span class="sample-num">NON-FERROUS · SAMPLE 04</span>
+    <span class="sample-title">Cu-Sn Bronze, Cast &amp; Water Quenched (Cu-20 wt% Sn)</span>
+  </div>
+  <div class="sample-body">
+    <div class="photo-col">
+      <figure class="micrograph">
+        <img src="micrographs/nf_s41.png" alt="NF-S4 Micrograph 1" />
+        <figcaption class="micrograph-caption">
+          <span class="micrograph-label">Fig. NF-4a - Dendritic solidification pattern overview</span>
+          <span class="micrograph-ref">C:\Users\Simon\micrographs\nf_s4.jpg</span>
+        </figcaption>
+      </figure>
+      <figure class="micrograph">
+        <img src="micrographs/nf_s42.png" alt="NF-S4 Micrograph 2" />
+        <figcaption class="micrograph-caption">
+          <span class="micrograph-label">Fig. NF-4b - Coring: Sn-gradient contrast across dendrite arms</span>
+          <span class="micrograph-ref">C:\Users\Simon\micrographs\nf_s4.jpg</span>
+        </figcaption>
+      </figure>
+      <div class="ref-box">
+        <p class="ref-box-title">References</p>
+        <ol>
+          <li>R. F. Cochrane, Department of Materials, University of Leeds, DoITPoMS Teaching and Learning Package, Sept. 4, 2002. [Online]. Available: https://www.doitpoms.ac.uk/miclib/full_record.php?id=437</li>
+          <li>B. Sankar, K. V. Shankar, V. Sunil, H. K. S., N. Nair, A. A. Nair, and A. P. M., “Influence of quenching medium on the dendrite morphology, hardness, and tribological behaviour of cast Cu–Ni–Sn spinodal alloy,” Defence Technology, vol. 30, pp. 83–100, 2023. https://doi.org/10.1016/j.dt.2023.04.016</li>
+        </ol>
+      </div>
+    </div>
+    <div class="text-col">
+      <div class="field"><span class="field-label">Alloy Name</span><span class="field-value">Cu-20Sn Bronze</span></div>
+      <div class="field"><span class="field-label">Composition (wt%)</span><span class="field-value">Cu - 80%, Sn - 20%</span></div>
+      <div class="field"><span class="field-label">Processing / Treatment</span><span class="field-value">Cast, annealed at 530°C, water quenched</span></div>
+      <div class="field"><span class="field-label">Etching Details</span><span class="field-value">Ferric chloride solution</span></div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Microstructure Description</span>
+        <span class="field-value">Classic dendritic solidification pattern - tree-like branching structures. Colour/shade variation across dendrite arms indicates coring: compositional gradients frozen in during solidification.</span>
+      </div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Phases Present</span>
+        <ul class="phases-list">
+          <li><span class="phase-name">Cu-Rich Dendrite Arms</span><span>Lighter-coloured regions - the first solid to form during solidification.</span></li>
+          <li><span class="phase-name">Sn-Rich Interdend.</span><span>Darker interdendritic regions - result of coring: progressive Sn enrichment of remaining liquid.</span></li>
+        </ul>
+      </div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Why It Looks Like That</span>
+        <span class="field-value">Dendritic morphology arises when the solidification front becomes unstable, growing as branching tree-like structures (from Greek: 'dendron'). Coring occurs because the first solid is Cu-rich; as solidification continues the remaining liquid is progressively enriched in Sn. Rapid cooling prevented solid-state homogenisation, preserving the Sn concentration gradient across the dendrites.</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ── NF-S5: Cu-45Zn Brass ── -->
+<article class="sample" id="nf5">
+  <div class="sample-header">
+    <span class="sample-num">NON-FERROUS · SAMPLE 05</span>
+    <span class="sample-title">Cu-45Zn Brass, Rapidly Cooled</span>
+  </div>
+  <div class="sample-body">
+    <div class="photo-col">
+      <figure class="micrograph">
+        <img src="micrographs/nf_s51.png" alt="NF-S5 Micrograph 1" />
+        <figcaption class="micrograph-caption">
+          <span class="micrograph-label">Fig. NF-5a - Uniform β matrix, low magnification</span>
+          <span class="micrograph-ref">C:\Users\Simon\micrographs\nf_s5.jpg</span>
+        </figcaption>
+      </figure>
+      <figure class="micrograph">
+        <img src="micrographs/nf_s52.png" alt="NF-S5 Micrograph 2" />
+        <figcaption class="micrograph-caption">
+          <span class="micrograph-label">Fig. NF-5b - Fine dot-like features in β matrix</span>
+          <span class="micrograph-ref">C:\Users\Simon\micrographs\nf_s5.jpg</span>
+        </figcaption>
+      </figure>
+      <figure class="micrograph">
+        <img src="micrographs/nf_s53.png" alt="NF-S5 Micrograph 3" />
+        <figcaption class="micrograph-caption">
+          <span class="micrograph-label">Fig. NF-5c - High magnification, β grain boundary detail</span>
+          <span class="micrograph-ref">C:\Users\Simon\micrographs\nf_s5.jpg</span>
+        </figcaption>
+      </figure>
+      <div class="ref-box">
+        <p class="ref-box-title">References</p>
+        <ol>
+          <li>R. F. Cochrane, Department of Materials, University of Leeds, DoITPoMS Teaching and Learning Package, Sept. 4, 2002. [Online]. Available: https://www.doitpoms.ac.uk/miclib/full_record.php?id=451</li>
+          <li>M. Asiri, “Analysis of zinc addition on hardness and phase value of copper–zinc alloy through the casting process,” Journal of Lifestyle and SDGs Review, vol. 5, 2024, Art. no. e01889. https://doi.org/10.47172/2965-730X.SDGsReview.v5.n02.pe01889</li>
+        </ol>
+      </div>
+    </div>
+    <div class="text-col">
+      <div class="field"><span class="field-label">Alloy Name</span><span class="field-value">Cu-45Zn Brass</span></div>
+      <div class="field"><span class="field-label">Composition (wt%)</span><span class="field-value">Cu - 55%, Zn - 45%</span></div>
+      <div class="field"><span class="field-label">Processing / Treatment</span><span class="field-value">Rapidly cooled during casting</span></div>
+      <div class="field"><span class="field-label">Etching Details</span><span class="field-value">Ammonium persulphate solution</span></div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Microstructure Description</span>
+        <span class="field-value">Uniform structure with many small dots or fine features throughout. No clear dendritic structure visible - appears as a single fine-grained β matrix.</span>
+      </div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Phases Present</span>
+        <ul class="phases-list">
+          <li><span class="phase-name">Beta (β) Phase</span><span>Dominant BCC Zn-rich phase - retained from high-temperature state throughout the microstructure.</span></li>
+        </ul>
+      </div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Why It Looks Like That</span>
+        <span class="field-value">At 45% Zn, slow cooling would give β dendrites surrounded by α. Rapid cooling suppressed the diffusional Zn partitioning needed to separate α and β regions and prevented dendrite formation, yielding an entirely (or predominantly) β matrix - a supersaturated solid solution retaining its high-temperature structure. Small dots may be early-stage α precipitates or etching artifacts.</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ── NF-S6: Ti-6Al-4V ── -->
+<article class="sample" id="nf6">
+  <div class="sample-header">
+    <span class="sample-num">NON-FERROUS · SAMPLE 06</span>
+    <span class="sample-title">Ti-6Al-4V (Widmanstätten α+β)</span>
+  </div>
+  <div class="sample-body">
+    <div class="photo-col">
+      <figure class="micrograph">
+        <img src="micrographs/nf_s61.png" alt="NF-S6 Micrograph 1" />
+        <figcaption class="micrograph-caption">
+          <span class="micrograph-label">Fig. NF-6a - Widmanstätten α colony overview</span>
+          <span class="micrograph-ref">C:\Users\Simon\micrographs\nf_s6.jpg</span>
+        </figcaption>
+      </figure>
+      <figure class="micrograph">
+        <img src="micrographs/nf_s62.png" alt="NF-S6 Micrograph 2" />
+        <figcaption class="micrograph-caption">
+          <span class="micrograph-label">Fig. NF-6b - α plates and β matrix, high magnification</span>
+          <span class="micrograph-ref">C:\Users\Simon\micrographs\nf_s6.jpg</span>
+        </figcaption>
+      </figure>
+      <div class="ref-box">
+        <p class="ref-box-title">References</p>
+        <ol>
+          <li>T. W. Clyne, Department of Materials Science and Metallurgy, University of Cambridge, DoITPoMS Micrograph Library, Oct. 25, 2001. [Online]. Available: https://www.doitpoms.ac.uk/miclib/micrograph_record.php?id=54</li>
+          <li>M. Munsch, “Laser additive manufacturing of customized prosthetics and implants for biomedical applications,” in Laser Additive Manufacturing, Woodhead Publishing, 2017, pp. 399–420. https://doi.org/10.1016/B978-0-08-100433-3.00015-4</li>
+        </ol>
+      </div>
+    </div>
+    <div class="text-col">
+      <div class="field"><span class="field-label">Alloy Name</span><span class="field-value">Ti-6Al-4V (Grade 5 Titanium Alloy)</span></div>
+      <div class="field"><span class="field-label">Composition (wt%)</span><span class="field-value">Ti - 6% Al, 4% V</span></div>
+      <div class="field"><span class="field-label">Processing / Treatment</span><span class="field-value">Cooled from the β phase field</span></div>
+      <div class="field"><span class="field-label">Etching Details</span><span class="field-value">Ammonium persulphate solution</span></div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Microstructure Description</span>
+        <span class="field-value">Needle-like or plate-like features arranged in colonies with near-parallel alignment within a contrasting matrix - a distinctive interwoven Widmanstätten pattern.</span>
+      </div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Phases Present</span>
+        <ul class="phases-list">
+          <li><span class="phase-name">Alpha (α) Phase</span><span>Light-coloured, needle/plate-like HCP features - the precipitated phase.</span></li>
+          <li><span class="phase-name">Beta (β) Phase</span><span>Dark BCC matrix between the α plates - retained high-temperature phase.</span></li>
+        </ul>
+      </div>
+      <hr class="field-divider" />
+      <div class="field">
+        <span class="field-label">Why It Looks Like That</span>
+        <span class="field-value">Al stabilises HCP α; V stabilises BCC β. Upon cooling from the β phase field, α nucleates and grows as Widmanstätten plates along specific crystallographic planes of β with a precise Burgers orientation relationship. β remains as thin dark layers between α plates. This microstructure gives high strength (yield strength often >1000 MPa) but limited ductility (~5% elongation), improvable by post-processing heat treatment - critical for biomedical implant applications.</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+<!-- ══════════════════════════════════════════
+     PART III - COMPARATIVE ANALYSIS
+══════════════════════════════════════════ -->
+<section class="comparison">
+  <div class="comparison-header">
+    <h2>Part III - Comparison and Answers to Questions</h2>
+  </div>
+  <div class="comparison-body">
+    <div class="comp-block">
+      <p class="comp-label">A. Ferrous Alloys</p>
+      <p class="comp-text">Carbon content and cooling rate are the two dominant variables in ferrous alloys. At the eutectoid composition (0.8 wt% C), slow cooling produces coarse pearlite - lamellar spacing inversely proportional to undercooling. Above 0.8 wt% C, proeutectoid cementite forms first at grain boundaries; fast cooling yields Widmanstätten cementite plates. Quenching bypasses the pearlite nose entirely, producing the diffusionless martensitic transformation - FCC austenite shears to BCT martensite, with lenticular plates growing at near-sonic velocity. At very high carbon contents (cast irons), the eutectic reaction governs solidification: silicon content determines whether graphite flakes form (grey iron - brittle, crack-like flakes) or all carbon stays as cementite (white iron - extremely hard). Ni-hard iron leverages Ni to suppress pearlite and enforce martensite, with Cr hardening the carbides.</p>
+    </div>
+    <div class="comp-block">
+      <p class="comp-label">B. Non-Ferrous Alloys</p>
+      <p class="comp-text">In brass (Cu-Zn), zinc content governs phase balance. At 30% Zn, single-phase α with annealing twins after recrystallization. At 40% Zn and air cooling, a Widmanstätten α+β 'basket weave'. At 45% Zn with rapid cooling, uniform β retained. The Al-Si system shows how solidification rate controls microstructure scale: slow casting yields coarse brittle Si plates, while rapid solidification refines Si to nanoscale spheroids. Cu-Sn bronze illustrates dendritic coring - Sn concentration gradient frozen by rapid solidification. Ti-6Al-4V shows Widmanstätten α plates in a β matrix via a precise crystallographic precipitation transformation, giving high strength with limited ductility.</p>
+    </div>
+    <div class="comp-block comp-full">
+      <p class="comp-label">C. Conclusions</p>
+      <p class="comp-text"><strong>1. Cooling rate controls scale and morphology.</strong> Slow cooling allows equilibrium phases to grow large (coarse pearlite, large graphite flakes, large dendrites). Fast cooling refines the structure (fine pearlite, Widmanstätten plates) or suppresses equilibrium transformations entirely (martensite, retained β phase). &nbsp;·&nbsp;</p>
+      <p class="comp-text"><strong>2. Microstructure directly controls properties.</strong> Martensite is hard and brittle; coarse pearlite is softer and tougher; graphite flakes act as internal cracks reducing ductility; annealing twins in brass signal a well-recrystallised ductile condition; Widmanstätten Ti-6Al-4V is strong but needs post-processing for adequate ductility.</p>
+      <p class="comp-text"><strong>3. Composition determines which phases are possible.</strong> Carbon content positions a steel in the Fe-C diagram (hypoeutectoid, eutectoid, hypereutectoid, or cast iron). Alloying elements shift the TTT curve, modify hardenability, and stabilise or suppress phases. Zinc content in brass determines α/β balance. &nbsp;·&nbsp;</p>
+    </div>
+
+    <div class="comp-block comp-full">
+      <p class="comp-label">D. Answers to Questions</p>
+      <p class="comp-text">1. <strong>What are the common phases observed in the ferrous alloy micrographs you collected?</strong><br> Common phases observed in ferrous alloy micrographs include ferrite, pearlite, cementite, martensite, bainite, and austenite. Ferrite appears as light regions and is relatively soft and ductile. Pearlite consists of alternating lamellae of ferrite and cementite. Cementite is a hard iron carbide phase. Martensite forms as a needle like or lath like structure after rapid cooling. Bainite appears as a feathery or acicular structure formed at intermediate cooling rates. Austenite is stable at high temperature and may be retained at room temperature in some steels.</p> <p class="comp-text">2. <strong>How does the carbon content influence the microstructure of steel?</strong><br> Carbon content strongly influences the microstructure of steel. Low carbon steels contain mostly ferrite with small amounts of pearlite, resulting in high ductility and low strength. Medium carbon steels show a balance of ferrite and pearlite, increasing strength and hardness. High carbon steels contain large amounts of pearlite and cementite, leading to higher hardness and lower ductility. In eutectoid steel, the structure is fully pearlitic. As carbon increases beyond the eutectoid composition, proeutectoid cementite forms along grain boundaries.</p> <p class="comp-text">3. <strong>What are the typical microstructural features of the non ferrous alloys you selected?</strong><br> Typical microstructural features of non ferrous alloys depend on the system. Aluminum alloys often show an aluminum matrix with fine precipitates of alloying elements. Copper alloys may display equiaxed grains in single phase solid solutions or a mixture of alpha and beta phases. Magnesium alloys frequently exhibit dendritic alpha magnesium and intermetallic phases along grain boundaries. Grain size, precipitate distribution, and phase morphology vary depending on composition and processing.</p> <p class="comp-text">4. <strong>How do heat treatments alter the microstructures of the alloys presented?</strong><br> Heat treatments significantly alter microstructure. Annealing promotes recrystallization and grain growth, reducing dislocation density and producing equiaxed grains. Normalizing refines grain size and results in a more uniform pearlitic structure in steels. Quenching transforms austenite into martensite, increasing hardness. Tempering reduces brittleness by allowing controlled precipitation and partial decomposition of martensite. In precipitation hardening alloys, solution treatment followed by aging forms fine coherent precipitates that strengthen the matrix.</p> <p class="comp-text">5. <strong>Based on your research, how do microstructural features relate to the mechanical properties of the alloys?</strong><br> Microstructural features directly influence mechanical properties. Fine grains increase strength according to the Hall Petch relationship. A higher fraction of hard phases such as martensite or cementite increases hardness and tensile strength but reduces ductility. Uniform precipitate distribution improves strength through precipitation hardening. Grain boundary phases may either strengthen or weaken the alloy depending on their morphology and distribution.</p> <p class="comp-text">6. <strong>Explain the importance of magnification in micrograph analysis.</strong><br> Magnification determines the scale at which features can be resolved. Low magnification reveals overall grain structure and phase distribution. High magnification allows observation of lamellae spacing in pearlite, precipitates, or dislocation structures. Without proper magnification, critical features may be misinterpreted or overlooked.</p> <p class="comp-text">7. <strong>What are some challenges in comparing micrographs from different sources?</strong><br> Challenges in comparing micrographs from different sources include differences in etching technique, magnification, sample preparation, and imaging equipment. Variations in lighting and contrast can change the apparent morphology of phases. Inconsistent scale bars or missing compositional information also make accurate comparison difficult.</p> <p class="comp-text">8. <strong>How does the processing history of a material affect its microstructure?</strong><br> Processing history strongly affects microstructure. Mechanical working such as rolling introduces elongated grains and high dislocation density. Casting produces dendritic structures. Heat treatment alters phase distribution and grain size. Cooling rate determines whether phases such as pearlite, bainite, or martensite form. Thus, microstructure reflects the thermal and mechanical history of the material.</p> <p class="comp-text">9. <strong>What are the benefits of creating a literature based compendium of microstructures?</strong><br> Creating a literature based compendium of microstructures allows systematic comparison of alloys and treatments. It helps identify trends between composition, processing, and properties. It also serves as a reference for phase identification and supports deeper understanding of structure property relationships.</p> <p class="comp-text">10. <strong>How can phase diagrams be used to interpret the microstructures observed in the literature?</strong><br> Phase diagrams are used to interpret which phases are thermodynamically stable at given compositions and temperatures. By locating the alloy composition and temperature on the diagram, one can anticipate phase fractions and transformations, which aids in explaining the observed microstructures and validating literature observations.</p>
+    </div>
+
+  </div>
+</section>
+
+
+</body>
+</html>
